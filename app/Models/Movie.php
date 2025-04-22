@@ -18,4 +18,10 @@ class Movie extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeSearch($query, $term)
+{
+    return $query->where('judul', 'like', "%{$term}%")
+                 ->orWhere('sinopsis', 'like', "%{$term}%");
+}
 }
